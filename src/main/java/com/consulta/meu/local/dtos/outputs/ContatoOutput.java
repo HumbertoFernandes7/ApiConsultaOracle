@@ -1,0 +1,18 @@
+package com.consulta.meu.local.dtos.outputs;
+
+import lombok.Data;
+
+@Data
+public class ContatoOutput {
+
+	private String nome;
+	
+	private String nomeSocial;
+	
+	private String email;
+	
+	private String cpf;
+	
+	private String rg;
+	
+}
