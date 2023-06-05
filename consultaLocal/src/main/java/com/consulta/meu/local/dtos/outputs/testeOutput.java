@@ -3,10 +3,9 @@ package com.consulta.meu.local.dtos.outputs;
 import lombok.Data;
 
 @Data
-public class ConsultaMenuPostoPoupaTempoOutput {
+public class testeOutput {
 
-	private Long id;
-	
 	private String Local;
-			
+	
+	private Number id;
 }

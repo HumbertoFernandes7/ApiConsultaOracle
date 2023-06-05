@@ -8,6 +8,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import com.consulta.meu.local.dtos.inputs.ConsultaAnexoInput;
 import com.consulta.meu.local.dtos.inputs.ConsultaManifestacaoCpfInput;
 import com.consulta.meu.local.dtos.inputs.InserirAnexoInput;
+import com.consulta.meu.local.dtos.inputs.RetornaProdutoInput;
 import com.consulta.meu.local.dtos.outputs.ConsultaAnexoOutput;
 import com.consulta.meu.local.dtos.outputs.ConsultaManifestacaoCpfOutput;
 import com.consulta.meu.local.dtos.outputs.ConsultaMenuLocalCiretranOutput;
@@ -15,6 +16,7 @@ import com.consulta.meu.local.dtos.outputs.ConsultaMenuPeriodoOutput;
 import com.consulta.meu.local.dtos.outputs.ConsultaMenuPostoPoupaTempoOutput;
 import com.consulta.meu.local.dtos.outputs.InserirAnexoOutput;
 import com.consulta.meu.local.dtos.outputs.RespostaOutput;
+import com.consulta.meu.local.dtos.outputs.RetornaProdutoOutput;
 
 import reactor.core.publisher.Mono;
 
@@ -122,5 +124,20 @@ public class RespostaService {
 				.defaultHeaders(h -> h.setBasicAuth(login, senha))
 				.build();
 		return webClient;
+	}
+
+
+	public RetornaProdutoOutput devolveRetornoProduto(RetornaProdutoInput retornaProdutoInput) {
+		WebClient webClient = configWebClient(
+				"https://integration-test-grg5hzhwviah-gr.integration.sa-saopaulo-1.ocp.oraclecloud.com/ic/api/integration/v1/flows/rest/RETORNA_PRODUTO/1.0/",
+				"sergio.braun@apoioprodesp.sp.gov.br", "40Gbnopc@2GEP20211");
+		
+		RetornaProdutoOutput response = webClient.method(HttpMethod.POST)
+				.accept(MediaType.APPLICATION_JSON)
+				.body(Mono.just(retornaProdutoInput), RetornaProdutoInput.class)
+				.retrieve()
+				.bodyToMono(RetornaProdutoOutput.class).block();
+
+		return response;
 	}
 }

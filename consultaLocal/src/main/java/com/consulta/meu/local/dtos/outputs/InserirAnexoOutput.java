@@ -5,4 +5,7 @@ import lombok.Data;
 @Data
 public class InserirAnexoOutput {
 
+	private String isValid;
+	
+	private String msgError;
 }

@@ -1,15 +1,15 @@
 package com.consulta.meu.local.dtos.outputs;
 
-import java.util.List;
-
 import lombok.Data;
 
 @Data
-public class ConsultaManifestacaoCpfOutput {
+public class RetornaProdutoOutput {
 
 	private String isValid;
 	
 	private String msgErro;
 	
-	private List<ReferenceOutput> Reference;
+	private String Produto;
+	
+	private Long idProduto;
 }
