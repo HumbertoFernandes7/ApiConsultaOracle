@@ -5,11 +5,11 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class ConsultaMenuPeriodoOutput {
+public class ConsultaStatusOutput {
 
 	private Boolean isValid;
 	
 	private String msgErro;
 	
-	private List<DataOutput> data;
+	private List<DataConsultaStatusOutput> data;
 }

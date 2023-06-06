@@ -15,18 +15,22 @@ import com.consulta.meu.local.dtos.inputs.ConsultaThreadManifestacaoInput;
 import com.consulta.meu.local.dtos.inputs.InserirAnexoInput;
 import com.consulta.meu.local.dtos.inputs.RegistraManifestacaoInput;
 import com.consulta.meu.local.dtos.inputs.RetornaProdutoInput;
+import com.consulta.meu.local.dtos.inputs.VerificaManifestacao7DiasInput;
 import com.consulta.meu.local.dtos.outputs.ConsultaAnexoOutput;
+import com.consulta.meu.local.dtos.outputs.ConsultaCanalEntradaOutput;
 import com.consulta.meu.local.dtos.outputs.ConsultaManifestacaoCpfOutput;
 import com.consulta.meu.local.dtos.outputs.ConsultaMenuAssuntoOutput;
 import com.consulta.meu.local.dtos.outputs.ConsultaMenuLocalCiretranOutput;
 import com.consulta.meu.local.dtos.outputs.ConsultaMenuPeriodoOutput;
 import com.consulta.meu.local.dtos.outputs.ConsultaMenuPostoPoupaTempoOutput;
 import com.consulta.meu.local.dtos.outputs.ConsultaMenuServicoOutput;
+import com.consulta.meu.local.dtos.outputs.ConsultaStatusOutput;
 import com.consulta.meu.local.dtos.outputs.ConsultaThreadManifestacaoOutput;
 import com.consulta.meu.local.dtos.outputs.InserirAnexoOutput;
 import com.consulta.meu.local.dtos.outputs.RegistraManifestacaoOutput;
 import com.consulta.meu.local.dtos.outputs.RespostaOutput;
 import com.consulta.meu.local.dtos.outputs.RetornaProdutoOutput;
+import com.consulta.meu.local.dtos.outputs.VerificaManifestacao7DiasOutput;
 import com.consulta.meu.local.openapis.ConsultaControllerOpenAPI;
 import com.consulta.meu.local.services.RespostaService;
 
@@ -48,69 +52,80 @@ public class ConsultaController implements ConsultaControllerOpenAPI {
 	public ConsultaAnexoOutput consultaAnexo(@RequestBody @Valid ConsultaAnexoInput consultaAnexoInput) {
 		return respostaService.devolveConsultaAnexo(consultaAnexoInput);
 	}
-	
-	
+
 	@GetMapping("consulta-manifestacao-cpf")
-	public ConsultaManifestacaoCpfOutput consultaManifestacaoCpf(@RequestBody @Valid ConsultaManifestacaoCpfInput consultaManifestacaoCpfInput) {
+	public ConsultaManifestacaoCpfOutput consultaManifestacaoCpf(
+			@RequestBody @Valid ConsultaManifestacaoCpfInput consultaManifestacaoCpfInput) {
 		return respostaService.devolveConsultaManifestacaoCpf(consultaManifestacaoCpfInput);
 	}
-	
-	
+
 	@GetMapping("consulta-menu-local-ciretran")
 	public ConsultaMenuLocalCiretranOutput consultaMenuLocalCiretran() {
 		return respostaService.devolveConsultaMenuLocalCiretran();
 	}
-	
-	
+
 	@GetMapping("consulta-menu-periodo")
 	public ConsultaMenuPeriodoOutput consultaMenuPeriodo() {
 		return respostaService.devolveConsultaMenuPeriodo();
 	}
-	
-	
+
 	@GetMapping("consulta-menu-posto-poupatempo")
 	public ConsultaMenuPostoPoupaTempoOutput consultaMenuPostoPoupaTempo() {
 		return respostaService.devolveConsultaMenuPostoPoupaTempoOutput();
 	}
-	
-	
+
 	@GetMapping("inserir-anexo")
 	public InserirAnexoOutput inserirAnexo(@RequestBody InserirAnexoInput inserirAnexoInput) {
 		return respostaService.devolveInserirAnexo(inserirAnexoInput);
 	}
-	
-	
+
 	@GetMapping("retorna-produto")
 	public RetornaProdutoOutput retornaProduto(@RequestBody RetornaProdutoInput retornaProdutoInput) {
 		return respostaService.devolveRetornoProduto(retornaProdutoInput);
 	}
-	
-	
+
 	@GetMapping("consulta-menu-assunto")
-	public ConsultaMenuAssuntoOutput retornaConsultaMenuAssunto(@RequestBody ConsultaMenuAssuntoInput consultaMenuAssuntoInput) {
+	public ConsultaMenuAssuntoOutput retornaConsultaMenuAssunto(
+			@RequestBody ConsultaMenuAssuntoInput consultaMenuAssuntoInput) {
 		return respostaService.devolveRetornaConsultaMenuAssunto(consultaMenuAssuntoInput);
 	}
-	
-	
+
 	@GetMapping("consulta-menu-servico")
-	public ConsultaMenuServicoOutput retornaConsultaMenuServico(@RequestBody ConsultaMenuServicoInput consultaMenuServicoInput) {
+	public ConsultaMenuServicoOutput retornaConsultaMenuServico(
+			@RequestBody ConsultaMenuServicoInput consultaMenuServicoInput) {
 		return respostaService.devolveRetornaConsultaMenuServico(consultaMenuServicoInput);
 	}
-	
-	
+
 	@GetMapping("consulta-thread-manifestacao")
-	public ConsultaThreadManifestacaoOutput retornaConsultaThreadManifestacao(@RequestBody ConsultaThreadManifestacaoInput consultaThreadManifestacaoInput) {
+	public ConsultaThreadManifestacaoOutput retornaConsultaThreadManifestacao(
+			@RequestBody ConsultaThreadManifestacaoInput consultaThreadManifestacaoInput) {
 		return respostaService.devolveRetornaConsultaThreadManifestacao(consultaThreadManifestacaoInput);
 	}
-	
+
 //	@GetMapping("inserir-thread-manifestacao")
-//	public ConsultaThreadManifestacaoOutput retornaConsultaThreadManifestacao(@RequestBody ConsultaThreadManifestacaoInput consultaThreadManifestacaoInput) {
-//		return respostaService.devolveRetornaConsultaThreadManifestacao(consultaThreadManifestacaoInput);
+//	public InserirThreadManifestacaoOutput retornaInserirThreadManifestacao(@RequestBody InserirThreadManifestacaoInput inserirThreadManifestacaoInput) {
+//		return respostaService.devolveInserirThreadManifestacao(inserirThreadManifestacaoInput);
 //	}
-	
+
 	@GetMapping("registra-manifestacao")
-	public RegistraManifestacaoOutput retornaRegistraManifestacao(@RequestBody RegistraManifestacaoInput registraManifestacaoInput) {
+	public RegistraManifestacaoOutput retornaRegistraManifestacao(
+			@RequestBody RegistraManifestacaoInput registraManifestacaoInput) {
 		return respostaService.devolveRegistraManifestacao(registraManifestacaoInput);
 	}
-	
+
+	@GetMapping("verifica-manifestacao-7-dias")
+	public VerificaManifestacao7DiasOutput retornaRegistraManifestacao7Dias(
+			@RequestBody VerificaManifestacao7DiasInput verificaManifestacao7DiasInput) {
+		return respostaService.devolveRegistraManifestacao7Dias(verificaManifestacao7DiasInput);
+	}
+
+	@GetMapping("consulta-canal-entrada")
+	public ConsultaCanalEntradaOutput retornaConsultaCanalEntrada() {
+		return respostaService.devolveConsultaCanalEntrada();
+	}
+
+	@GetMapping("consulta-status")
+	public ConsultaStatusOutput retornaConsultaStatus() {
+		return respostaService.devolveConsultaStatus();
+	}
 }

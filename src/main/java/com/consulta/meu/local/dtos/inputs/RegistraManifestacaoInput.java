@@ -23,7 +23,7 @@ public class RegistraManifestacaoInput {
 	
 	private String assunto;
 	
-	private String produto;
+	private Number produto;
 	
 	private String pis;
 	

@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class ConsultaMenuServicoOutput {
 
-	private String isValid;
+	private Boolean isValid;
 	
 	private String msgErro;
 	
