@@ -11,4 +11,5 @@ import lombok.Data;
 public class RegistraManifestacaoOutput {
 
 	private List<DataRegistraManifestacaoOutput> Manifestacao;
+
 }

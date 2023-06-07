@@ -7,7 +7,7 @@ public class ReturnVerificaManifestacao7DiasOutput {
 
 	private String identificador;
 
-	private String isValid;
+	private Boolean isValid;
 
 	private String msgErro;
 }
