@@ -13,6 +13,7 @@ import com.consulta.meu.local.dtos.inputs.ConsultaMenuAssuntoInput;
 import com.consulta.meu.local.dtos.inputs.ConsultaMenuServicoInput;
 import com.consulta.meu.local.dtos.inputs.ConsultaThreadManifestacaoInput;
 import com.consulta.meu.local.dtos.inputs.InserirAnexoInput;
+import com.consulta.meu.local.dtos.inputs.InserirThreadManifestacaoInput;
 import com.consulta.meu.local.dtos.inputs.RegistraManifestacaoInput;
 import com.consulta.meu.local.dtos.inputs.RetornaProdutoInput;
 import com.consulta.meu.local.dtos.inputs.VerificaManifestacao7DiasInput;
@@ -27,6 +28,7 @@ import com.consulta.meu.local.dtos.outputs.ConsultaMenuServicoOutput;
 import com.consulta.meu.local.dtos.outputs.ConsultaStatusOutput;
 import com.consulta.meu.local.dtos.outputs.ConsultaThreadManifestacaoOutput;
 import com.consulta.meu.local.dtos.outputs.InserirAnexoOutput;
+import com.consulta.meu.local.dtos.outputs.InserirThreadManifestacaoOutput;
 import com.consulta.meu.local.dtos.outputs.RegistraManifestacaoOutput;
 import com.consulta.meu.local.dtos.outputs.RespostaOutput;
 import com.consulta.meu.local.dtos.outputs.RetornaProdutoOutput;
@@ -35,6 +37,7 @@ import com.consulta.meu.local.openapis.ConsultaControllerOpenAPI;
 import com.consulta.meu.local.services.RespostaService;
 
 import jakarta.validation.Valid;
+import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping(ControllerConfig.PRE_URL + "/")
@@ -60,7 +63,7 @@ public class ConsultaController implements ConsultaControllerOpenAPI {
 	}
 
 	@GetMapping("consulta-menu-local-ciretran")
-	public ConsultaMenuLocalCiretranOutput consultaMenuLocalCiretran() {
+	public Flux<ConsultaMenuLocalCiretranOutput> consultaMenuLocalCiretran() {
 		return respostaService.devolveConsultaMenuLocalCiretran();
 	}
 
@@ -70,7 +73,7 @@ public class ConsultaController implements ConsultaControllerOpenAPI {
 	}
 
 	@GetMapping("consulta-menu-posto-poupatempo")
-	public ConsultaMenuPostoPoupaTempoOutput consultaMenuPostoPoupaTempo() {
+	public Flux<ConsultaMenuPostoPoupaTempoOutput> consultaMenuPostoPoupaTempo() {
 		return respostaService.devolveConsultaMenuPostoPoupaTempoOutput();
 	}
 
@@ -87,25 +90,25 @@ public class ConsultaController implements ConsultaControllerOpenAPI {
 	@GetMapping("consulta-menu-assunto")
 	public ConsultaMenuAssuntoOutput retornaConsultaMenuAssunto(
 			@RequestBody ConsultaMenuAssuntoInput consultaMenuAssuntoInput) {
-		return respostaService.devolveRetornaConsultaMenuAssunto(consultaMenuAssuntoInput);
+		return respostaService.devolveConsultaMenuAssunto(consultaMenuAssuntoInput);
 	}
 
 	@GetMapping("consulta-menu-servico")
 	public ConsultaMenuServicoOutput retornaConsultaMenuServico(
 			@RequestBody ConsultaMenuServicoInput consultaMenuServicoInput) {
-		return respostaService.devolveRetornaConsultaMenuServico(consultaMenuServicoInput);
+		return respostaService.devolveConsultaMenuServico(consultaMenuServicoInput);
 	}
 
 	@GetMapping("consulta-thread-manifestacao")
-	public ConsultaThreadManifestacaoOutput retornaConsultaThreadManifestacao(
+	public Flux<ConsultaThreadManifestacaoOutput> retornaConsultaThreadManifestacao(
 			@RequestBody ConsultaThreadManifestacaoInput consultaThreadManifestacaoInput) {
-		return respostaService.devolveRetornaConsultaThreadManifestacao(consultaThreadManifestacaoInput);
+		return respostaService.devolveConsultaThreadManifestacao(consultaThreadManifestacaoInput);
 	}
 
-//	@GetMapping("inserir-thread-manifestacao")
-//	public InserirThreadManifestacaoOutput retornaInserirThreadManifestacao(@RequestBody InserirThreadManifestacaoInput inserirThreadManifestacaoInput) {
-//		return respostaService.devolveInserirThreadManifestacao(inserirThreadManifestacaoInput);
-//	}
+	@GetMapping("inserir-thread-manifestacao")
+	public InserirThreadManifestacaoOutput retornaInserirThreadManifestacao(@RequestBody InserirThreadManifestacaoInput inserirThreadManifestacaoInput) {
+		return respostaService.devolveInserirThreadManifestacao(inserirThreadManifestacaoInput);
+	}
 
 	@GetMapping("registra-manifestacao")
 	public RegistraManifestacaoOutput retornaRegistraManifestacao(

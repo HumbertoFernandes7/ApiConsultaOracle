@@ -12,7 +12,7 @@ public class UriConfigs {
 	
 	public static final String uriConsultaMenuPeriodo = "https://integration-test-grg5hzhwviah-gr.integration.sa-saopaulo-1.ocp.oraclecloud.com/ic/api/integration/v1/flows/rest/CONSULTA_MENU_PERIODO/1.0/";
 	
-	public static final String uriConsultaMenuPostoPoupaTempo = "https://integration-test-grg5hzhwviah-gr.integration.sa-saopaulo-1.ocp.oraclecloud.com/ic/api/integration/v1/flows/rest/CONSULTA_MENU_PERIODO/1.0/";
+	public static final String uriConsultaMenuPostoPoupaTempo = "https://integration-test-grg5hzhwviah-gr.integration.sa-saopaulo-1.ocp.oraclecloud.com/ic/api/integration/v1/flows/rest/CONSULTA_MENU_POSTOPOUPA/1.0/";
 			
 	public static final String uriInserirAnexo = "https://integration-test-grg5hzhwviah-gr.integration.sa-saopaulo-1.ocp.oraclecloud.com/ic/api/integration/v1/flows/rest/INSERIR_ANEXO/1.0/";
 					

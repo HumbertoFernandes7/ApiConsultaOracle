@@ -1,15 +1,15 @@
 package com.consulta.meu.local.dtos.outputs;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
 import lombok.Data;
 
 @Data
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class ConsultaMenuLocalCiretranOutput {
 
-	//private Number id;
+	private Number id;
 	
 	private String Local;
 
-	private List<testeOutput> array;
 }

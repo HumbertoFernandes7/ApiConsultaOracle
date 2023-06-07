@@ -34,6 +34,7 @@ import com.consulta.meu.local.dtos.outputs.RespostaOutput;
 import com.consulta.meu.local.dtos.outputs.RetornaProdutoOutput;
 import com.consulta.meu.local.dtos.outputs.VerificaManifestacao7DiasOutput;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -55,10 +56,19 @@ public class RespostaService {
 	public <T> Mono<T> chamadaGET(Class<T> responseType, WebClient webClient) {
 		return webClient.method(HttpMethod.GET).retrieve().bodyToMono(responseType);
 	}
+	
+	public <T> Flux<T> chamadaFluxGET(Class<T> responseType, WebClient webClient) {
+		return webClient.method(HttpMethod.GET).retrieve().bodyToFlux(responseType);
+	}
 
 	public <T> Mono<T> chamadaPOST(Object requestBody, Class<T> responseType, WebClient webClient) {
 		return webClient.post().contentType(MediaType.APPLICATION_JSON).bodyValue(requestBody).retrieve()
 				.bodyToMono(responseType);
+	}
+
+	public <T> Flux<T> chamadaFluxPOST(Object requestBody, Class<T> responseType, WebClient webClient) {
+		return webClient.post().contentType(MediaType.APPLICATION_JSON).bodyValue(requestBody).retrieve()
+				.bodyToFlux(responseType);
 	}
 
 	// metodos de serviço
@@ -81,10 +91,10 @@ public class RespostaService {
 		return chamadaPOST(consultaManifestacaoCpfInput, ConsultaManifestacaoCpfOutput.class, webClient).block();
 	}
 
-	public ConsultaMenuLocalCiretranOutput devolveConsultaMenuLocalCiretran() {
+	public Flux<ConsultaMenuLocalCiretranOutput> devolveConsultaMenuLocalCiretran() {
 		WebClient webClient = configWebClient(UriConfigs.uriConsultaMenuLocalCiretran, usuario, senha);
 
-		return chamadaGET(ConsultaMenuLocalCiretranOutput.class, webClient).block();
+		return chamadaFluxGET(ConsultaMenuLocalCiretranOutput.class, webClient);
 	}
 
 	public ConsultaMenuPeriodoOutput devolveConsultaMenuPeriodo() {
@@ -93,10 +103,10 @@ public class RespostaService {
 		return chamadaGET(ConsultaMenuPeriodoOutput.class, webClient).block();
 	}
 
-	public ConsultaMenuPostoPoupaTempoOutput devolveConsultaMenuPostoPoupaTempoOutput() {
+	public Flux<ConsultaMenuPostoPoupaTempoOutput> devolveConsultaMenuPostoPoupaTempoOutput() {
 		WebClient webClient = configWebClient(UriConfigs.uriConsultaMenuPostoPoupaTempo, usuario, senha);
 
-		return chamadaGET(ConsultaMenuPostoPoupaTempoOutput.class, webClient).block();
+		return chamadaFluxGET(ConsultaMenuPostoPoupaTempoOutput.class, webClient);
 	}
 
 	public InserirAnexoOutput devolveInserirAnexo(InserirAnexoInput inserirAnexoInput) {
@@ -111,25 +121,23 @@ public class RespostaService {
 		return chamadaPOST(retornaProdutoInput, RetornaProdutoOutput.class, webClient).block();
 	}
 
-	public ConsultaMenuAssuntoOutput devolveRetornaConsultaMenuAssunto(
-			ConsultaMenuAssuntoInput consultaMenuAssuntoInput) {
+	public ConsultaMenuAssuntoOutput devolveConsultaMenuAssunto(ConsultaMenuAssuntoInput consultaMenuAssuntoInput) {
 		WebClient webClient = configWebClient(UriConfigs.uriConsultaMenuAssunto, usuario, senha);
 
 		return chamadaPOST(consultaMenuAssuntoInput, ConsultaMenuAssuntoOutput.class, webClient).block();
 	}
 
-	public ConsultaMenuServicoOutput devolveRetornaConsultaMenuServico(
-			ConsultaMenuServicoInput consultaMenuServicoInput) {
+	public ConsultaMenuServicoOutput devolveConsultaMenuServico(ConsultaMenuServicoInput consultaMenuServicoInput) {
 		WebClient webClient = configWebClient(UriConfigs.uriConsultaMenuServico, usuario, senha);
 
 		return chamadaPOST(consultaMenuServicoInput, ConsultaMenuServicoOutput.class, webClient).block();
 	}
 
-	public ConsultaThreadManifestacaoOutput devolveRetornaConsultaThreadManifestacao(
+	public Flux<ConsultaThreadManifestacaoOutput> devolveConsultaThreadManifestacao(
 			ConsultaThreadManifestacaoInput consultaThreadManifestacaoInput) {
 		WebClient webClient = configWebClient(UriConfigs.uriConsultaThreadManifestacao, usuario, senha);
 
-		return chamadaPOST(consultaThreadManifestacaoInput, ConsultaThreadManifestacaoOutput.class, webClient).block();
+		return chamadaFluxPOST(consultaThreadManifestacaoInput, ConsultaThreadManifestacaoOutput.class, webClient);
 	}
 
 	public RegistraManifestacaoOutput devolveRegistraManifestacao(RegistraManifestacaoInput registraManifestacaoInput) {
@@ -159,6 +167,8 @@ public class RespostaService {
 
 	public InserirThreadManifestacaoOutput devolveInserirThreadManifestacao(
 			InserirThreadManifestacaoInput inserirThreadManifestacaoInput) {
-		return null;
+		WebClient webClient = configWebClient(UriConfigs.uriInserirThreadManifestacao, usuario, senha);
+
+		return chamadaPOST(inserirThreadManifestacaoInput, InserirThreadManifestacaoOutput.class, webClient).block();
 	}
 }
