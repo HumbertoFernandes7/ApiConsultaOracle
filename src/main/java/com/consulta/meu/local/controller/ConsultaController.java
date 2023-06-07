@@ -52,7 +52,7 @@ public class ConsultaController implements ConsultaControllerOpenAPI {
 	}
 
 	@GetMapping("consulta-anexo")
-	public ConsultaAnexoOutput consultaAnexo(@RequestBody @Valid ConsultaAnexoInput consultaAnexoInput) {
+	public ConsultaAnexoOutput consultaAnexo(@RequestBody ConsultaAnexoInput consultaAnexoInput) {
 		return respostaService.devolveConsultaAnexo(consultaAnexoInput);
 	}
 
